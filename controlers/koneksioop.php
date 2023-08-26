@@ -31,4 +31,14 @@ class database
         }
         return $hasil;
     }
+
+    function tambah_data($judul_kontrak, $nilai_kontrak, $aging_days, $no_kontrak, $no_wbs)
+    {
+        mysqli_query($this->koneksi, "insert into kontrak values ('','$judul_kontrak','$nilai_kontrak','$aging_days','$no_kontrak','$no_wbs')");
+    }
+
+    function delete_data($id_kontrak)
+	{
+		$query = mysqli_query($this->koneksi,"delete from kontrak where id_kontrak='$id_kontrak'");
+	}
 }
