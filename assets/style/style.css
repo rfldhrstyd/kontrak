@@ -1,0 +1,386 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1300px;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* login start */
+
+.login {
+  max-width: 400px;
+  width: 100%;
+  padding: 60px 25px;
+  height: auto;
+  background-color: #fff;
+  box-shadow: 0px 10px 10px rgb(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.login-logo {
+  max-width: 280px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+}
+
+.login-logo img:not(:last-child) {
+  width: 100%;
+}
+
+.login-logo img:last-child {
+  width: 50%;
+}
+
+.login-title {
+  margin-bottom: 20px;
+}
+
+.login-title h1 {
+  font-weight: 800;
+  color: #212529;
+  font-size: 36px;
+  margin-bottom: 3px;
+}
+
+.login-title p {
+  font-weight: 500;
+  color: #6c757d;
+  text-transform: capitalize;
+  letter-spacing: 0.02rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.login-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.login-input input {
+  width: 80%;
+  height: 40px;
+  border-radius: 6px;
+  border: 2px solid #ced4da;
+  padding: 20px 60px 20px 20px;
+  outline-color: #0092dd !important;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0092dd;
+}
+
+.login-input input::placeholder {
+  color: #adb5bd;
+  font-size: 16px;
+}
+
+.login-input i {
+  position: absolute;
+  font-size: 18px;
+  color: #adb5bd;
+  position: absolute;
+  right: 15%;
+}
+
+.btn-login {
+  width: 80%;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0092dd;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+  box-shadow: 0px 10px 20px rgb(0, 146, 221, 0.1);
+}
+
+/* dashboard start here */
+.dashboard {
+  max-width: 1400px;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.dahsboard-content {
+  display: flex;
+  height: 100vh;
+}
+
+.dashboard-menu {
+  width: 15%;
+  padding: 40px 0 40px 0;
+  height: 100vh;
+  border-right: 1px solid #dfdfdf;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: fixed;
+}
+
+.dashboard-logo {
+  width: 170px;
+  margin-bottom: 40px;
+}
+
+.dashboard-logo img {
+  width: 100%;
+}
+
+.dashboard-navbar {
+  flex: 1;
+  width: 100%;
+}
+
+.navbar-list,
+.navbar-bottom {
+  width: 100%;
+}
+
+.navbar-link {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.active {
+  /* border-right: 8px solid #0092dd; */
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(0, 146, 221, 0.1) 100%
+  );
+}
+
+.active a {
+  color: #0092dd !important;
+}
+
+.navbar-link a {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #adb5bd;
+}
+
+.navbar-link a i {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.dashboard-midle {
+  position: relative;
+  left: 17%;
+  width: 85%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-title-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.dashboard-title h1 {
+  font-size: 46px;
+  color: #212529;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+.dashboard-title p {
+  color: #6c757d;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.dashboard-date {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dashboard-date p {
+  font-size: 16px;
+  color: #6c757d;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.dashboard-date i {
+  background-color: #e9ecef;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 20px;
+  color: #6c757d;
+  border-radius: 100%;
+}
+
+.dashboard-jumlah {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.jumlah-aging {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 10px solid #da231a;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.1);
+  padding: 35px 0;
+}
+
+.jumlah-aging i {
+  background-color: #da231a;
+  width: 80px;
+  text-align: center;
+  height: 80px;
+  line-height: 80px;
+  font-size: 40px;
+  border-radius: 100%;
+  color: #fff;
+  margin-right: 20px;
+}
+
+.aging-title p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 5px;
+}
+
+.aging-title h3 {
+  font-size: 28px;
+  color: #212529;
+  font-weight: 800;
+}
+
+.jumlah-user {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 10px solid #85c225;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.1);
+  padding: 35px 0;
+}
+
+.jumlah-user i {
+  background-color: #85c225;
+  width: 80px;
+  text-align: center;
+  height: 80px;
+  line-height: 85px;
+  font-size: 40px;
+  border-radius: 100%;
+  color: #fff;
+  margin-right: 20px;
+}
+
+.title-table {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.title-table h1 {
+  font-size: 28px;
+  color: #212529;
+  font-weight: 800;
+}
+
+.title-table a {
+  color: #0092dd;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+th {
+  color: #6c757d !important;
+  font-size: 16px;
+}
+
+.dataTables_filter {
+  margin-bottom: 10px;
+}
+
+.details {
+  font-size: 16px;
+  color: #0092dd;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.activekontrak a {
+  color: #85c225;
+}
+
+.activekontrak {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(133, 194, 37, 0.2) 100%
+  );
+}
+
+.activeuser a {
+  color: #85c225;
+}
+
+.activeuser {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(218, 35, 26, 0.2) 100%
+  );
+}
