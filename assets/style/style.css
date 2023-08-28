@@ -191,8 +191,8 @@
 .navbar-link a {
   display: flex;
   align-items: center;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   color: #adb5bd;
 }
 
@@ -218,7 +218,7 @@
 }
 
 .dashboard-title h1 {
-  font-size: 46px;
+  font-size: 38px;
   color: #212529;
   font-weight: 800;
   text-transform: capitalize;
@@ -331,6 +331,10 @@
   margin-bottom: 40px;
 }
 
+.title-tables {
+  margin-right: 28px;
+}
+
 .title-tables h1 {
   font-size: 32px;
   color: #212529;
@@ -338,7 +342,7 @@
   margin-bottom: 5px;
 }
 
-.title-tables p{
+.title-tables p {
   font-size: 16px;
   color: #adb5bd;
 }
@@ -355,7 +359,7 @@
   justify-content: center;
 }
 
-.title-table a i{
+.title-table a i {
   margin-right: 5px;
   font-size: 18px;
 }
@@ -402,32 +406,34 @@ th {
   );
 }
 
-td{
+td {
   color: #6c757d;
+  font-size: 14px !important;
 }
 
 /* tambah kontrak start */
-.dashboard-input{
+.dashboard-input {
   width: 100%;
   margin-top: -20px;
 }
 
-.tambah-kontrak{
+.tambah-kontrak {
   width: 50%;
 }
 
-.input-content{
+.input-content {
   display: flex;
   flex-direction: column;
 }
 
-.input-content input, .input-content textarea{
+.input-content input,
+.input-content textarea {
   border: 1px solid #adb5bd;
   border-radius: 6px;
   margin-bottom: 20px;
 }
 
-.input-content input{
+.input-content input {
   height: 40px;
   padding: 10px 20px;
   outline-color: #0092dd;
@@ -436,27 +442,28 @@ td{
   font-weight: 500;
 }
 
-.input-content input::placeholder{
+.input-content input::placeholder {
   color: #adb5bd;
   font-weight: 600;
 }
 
-.input-content textarea{
-  padding:  20px;
+.input-content textarea {
+  padding: 20px;
   outline-color: #0092dd;
   color: #0092dd;
   font-size: 14px;
   font-weight: 500;
 }
 
-.input-content label{
+.input-content label {
   font-size: 18px;
   font-weight: 600;
   color: #6c757d;
   margin-bottom: 5px;
 }
 
-.btn-tambah, .btn-reset{
+.btn-tambah,
+.btn-reset {
   height: 40px;
   width: 49.6%;
   border: none;
@@ -467,23 +474,121 @@ td{
   cursor: pointer;
 }
 
-.btn-tambah{
+.btn-tambah {
   background-color: #85c225;
 }
 
-.btn-reset{
+.btn-reset {
   background-color: #da231a;
 }
 
-.edit,.details,.hapus{
+.edit,
+.details,
+.hapus {
   font-size: 20px;
   cursor: pointer;
 }
 
-.edit{
+.edit {
   color: #85c225;
 }
 
-.hapus{
+.hapus {
   color: #da231a;
+}
+
+.table-judul {
+  width: 100%;
+  margin-top: -10px;
+}
+
+.table-judul-content {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.table-judul-content tr,
+.table-judul-content th,
+.table-judul-content td {
+  font-size: 14px;
+  border: 1px solid #6c757d;
+  padding: 5px 10px;
+}
+
+.table-file {
+  background-color: #fff;
+  box-shadow: 0px 10px 20px rgb(0, 0, 0, 0.2);
+  margin-top: 40px;
+  padding: 40px 20px;
+}
+
+.file-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.file-title h5 {
+  color: #6c757d;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.file-title form label {
+  color: #6c757d;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.ufile {
+  color: #6c757d;
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 16px;
+}
+
+.ufile[type="file"]::file-selector-button {
+  cursor: pointer;
+  height: 26px;
+  padding: 0px 16px;
+  font-size: 12px;
+  border: none;
+  border-radius: 6px;
+  color: #6c757d;
+  margin-right: 10px;
+}
+
+.btn-upload {
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  background-color: #0092dd;
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-download{
+  color: #0092dd;
+  font-size: 22px;
+  width: 50px !important;
+  background-color: #fff;
+  margin-right: 10px;
+}
+
+.btn-download i, .btn-hapus i{
+  background-color: #fff;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  box-shadow: 0 2px 6px rgba(0, 146, 221, 0.1);
+}
+
+.btn-hapus{
+  color: #da231a;
+  font-size: 22px;
 }
