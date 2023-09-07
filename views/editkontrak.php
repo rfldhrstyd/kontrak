@@ -32,7 +32,7 @@ if (!is_null($id_kontrak)) {
                 <ul class="navbar-list">
                     <li class="navbar-link"></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
                     <li class="navbar-link activekontrak"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
-                    <li class="navbar-link"><a href=""><i class='bx bx-user-pin'></i> Users</a></li>
+                    <li class="navbar-link"><a href="halamanuser.php"><i class='bx bx-user-pin'></i> Users</a></li>
                 </ul>
             </div>
             <?php include 'components/menu.php' ?>
@@ -63,6 +63,18 @@ if (!is_null($id_kontrak)) {
                         <label for="">Aging Days</label>
                         <input type="text" placeholder="200 Hari" name="aging_days" value="<?php echo $data_kontrak['aging_days'] ?>">
                     </div>
+
+                    <div class="input-content new-input">
+                        <div class="input-content-days">
+                            <label for="">Dari Tanggal </label>
+                            <input type="date" placeholder="20 Agustus 2023" name="tgl_dari" value="<?php echo $data_kontrak['tgl_dari'] ?>">
+                        </div>
+                        <div class="input-content-days">
+                            <label for="">Sampai Tanggal</label>
+                            <input type="date" placeholder="20 Desember 2023" name="tgl_sampai" value="<?php echo $data_kontrak['tgl_sampai'] ?>">
+                        </div>
+                    </div>
+
                     <div class="input-content">
                         <label for="">No Kontrak</label>
                         <input type="text" placeholder="000000000" name="no_kontrak" value="<?php echo $data_kontrak['no_kontrak'] ?>">

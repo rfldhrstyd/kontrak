@@ -67,11 +67,24 @@ switch (bulan) {
     bulan = "Desember";
     break;
 }
-var tampilTanggal =
-   hari + ", " + tanggal + " " + bulan + " " + tahun;
+var tampilTanggal = hari + ", " + tanggal + " " + bulan + " " + tahun;
 
 document.getElementById("tanggal").innerHTML = tampilTanggal;
 
 function redirectKontrak() {
-  window.location="kontrakaging.php";
+  window.location = "kontrakaging.php";
+}
+
+function btnOpen() {
+  const tambahPic = (document.querySelector(".tambah-pic").style.display =
+    "grid");
+}
+
+function btnClose() {
+  const tambahPic = (document.querySelector(".tambah-pic").style.display =
+    "none");
+}
+
+function editAction(id) {
+  
 }

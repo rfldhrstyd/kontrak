@@ -40,7 +40,7 @@ if (isset($_GET['pesan'])) {
                 <ul class="navbar-list">
                     <li class="navbar-link"></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
                     <li class="navbar-link activekontrak"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
-                    <li class="navbar-link"><a href=""><i class='bx bx-user-pin'></i> Users</a></li>
+                    <li class="navbar-link"><a href="halamanuser.php"><i class='bx bx-user-pin'></i> Users</a></li>
                 </ul>
             </div>
             <?php include 'components/menu.php' ?>
@@ -51,7 +51,7 @@ if (isset($_GET['pesan'])) {
                 <div class="title-table">
                     <div class="title-tables">
                         <h1>Kontrak Aging</h1>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
+                        <p>Mari berkordinasi menyelesaikan kontrak yang sudah aging.</p>
                     </div>
                     <a href="tambahkontrak.php"><i class='bx bx-plus'></i> Tambah Kontrak</a>
                 </div>

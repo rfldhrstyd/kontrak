@@ -6,7 +6,7 @@
   box-sizing: border-box;
   font-family: "Nunito Sans", sans-serif;
   list-style: none;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .container {
@@ -244,6 +244,8 @@
 }
 
 .dashboard-date i {
+  position: relative;
+  top: -10px;
   background-color: #e9ecef;
   width: 35px;
   height: 35px;
@@ -394,7 +396,7 @@ th {
 }
 
 .activeuser a {
-  color: #85c225;
+  color: #da231a;
 }
 
 .activeuser {
@@ -415,6 +417,7 @@ td {
 .dashboard-input {
   width: 100%;
   margin-top: -20px;
+  padding-bottom: 40px;
 }
 
 .tambah-kontrak {
@@ -571,7 +574,7 @@ td {
   cursor: pointer;
 }
 
-.btn-download{
+.btn-download {
   color: #0092dd;
   font-size: 22px;
   width: 50px !important;
@@ -579,7 +582,8 @@ td {
   margin-right: 10px;
 }
 
-.btn-download i, .btn-hapus i{
+.btn-download i,
+.btn-hapus i {
   background-color: #fff;
   border-radius: 100%;
   width: 35px;
@@ -588,7 +592,266 @@ td {
   box-shadow: 0 2px 6px rgba(0, 146, 221, 0.1);
 }
 
-.btn-hapus{
+.btn-hapus {
   color: #da231a;
   font-size: 22px;
+}
+
+.table-pic {
+  background-color: #fff;
+  box-shadow: 0px 10px 20px rgb(0, 0, 0, 0.2);
+  margin-top: 40px;
+  padding: 40px 20px;
+  margin: 40px 0;
+}
+
+.table-pic-tittle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.table-pic-tittle h3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #6c757d;
+}
+
+.tambah-pic {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgb(206, 212, 218, 0.6);
+  display: none;
+  place-items: center;
+}
+
+.pic-content {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+  position: relative;
+}
+
+.pic-content form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.pic-content h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #212529;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.pic-content form label {
+  color: #6c757d;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+select,
+.pic-content form input {
+  margin-bottom: 20px;
+  height: 40px;
+  padding: 0px 10px;
+  color: #6c757d;
+  border: 1px solid #6c757d;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.btn-reset-pic {
+  margin-top: 10px;
+  background-color: #da231a;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-cls {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+
+.btn-cls i {
+  color: #0092dd;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.status-content {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-top: 1px solid #adb5bd;
+  padding: 5px 0;
+}
+
+.status-according {
+  width: 70%;
+}
+.status-status {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 53px;
+}
+
+.status-done, .status-progres{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 7px;
+}
+
+.status-done p{
+  color: #0092dd;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status-progres{
+  color: #da231a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+.status-progres p i{
+  font-size: 16px;
+  position: relative;
+  top: 2px;
+  margin-right: 5px;
+}
+
+.status-done p i{
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+}
+
+.status-no{
+  position: relative;
+  top: 14px;
+  width: 5%;
+  text-align: center;
+}
+
+
+
+.status-actions {
+  height: 53px;
+  width: 15%;
+  height: 53px;
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.status-actions a {
+  text-align: center;
+}
+
+.status-judul{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.status-judul h4{
+  font-size: 16px;
+  color: #6c757d;
+  font-weight: 600;
+}
+
+.addpic-content{
+  display: flex;
+  flex-direction: column;
+}
+.addpic-content:first-child{
+  margin-bottom: 20px;
+}
+
+.new-input{
+  display: flex !important;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.input-content-days{
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+.table-judul p{
+  color: #6c757d;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+  text-align: justify;
+}
+
+.table-judul p code{
+  font-size: 16px !important;
+}
+
+.table-judul p span{
+  font-weight: 600;
+}
+
+.user-saat-ini{
+  display: flex;
+  margin-top: -20px;
+  margin-bottom: 40px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.user-saat-ini h3{
+  font-size: 20px;
+  line-height: 29px;
+  width: 40%;
+  color: #212529;
+  font-weight: 600;
+}
+
+.user-saat-ini h3 strong{
+  text-transform: capitalize;
+}
+
+.ubah-ps{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 50%;
+  justify-content: end;
+}
+
+.ubah-ps input{
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #6c757d;
+  width: 300px;
 }

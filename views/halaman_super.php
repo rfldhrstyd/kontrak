@@ -38,7 +38,7 @@ $tampil_kontrak = $db->tampil_data();
                 <ul class="navbar-list">
                     <li class="navbar-link active"></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
                     <li class="navbar-link"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
-                    <li class="navbar-link"><a href=""><i class='bx bx-user-pin'></i> Users</a></li>
+                    <li class="navbar-link"><a href="halamanuser.php"><i class='bx bx-user-pin'></i> Users</a></li>
                 </ul>
             </div>
             <?php include 'components/menu.php' ?>
@@ -47,7 +47,7 @@ $tampil_kontrak = $db->tampil_data();
             <div class="dashboard-title-top">
                 <div class="dashboard-title">
                     <h1>Hello, <?php echo $_SESSION['username']; ?></h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <p>Mari berkordinasi menyelesaikan kontrak yang sudah aging.</p>
                 </div>
                 <div class="dashboard-date">
                     <p id="tanggal"></p> <i class='bx bx-calendar'></i>

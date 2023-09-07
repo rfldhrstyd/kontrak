@@ -16,7 +16,11 @@ include('../controlers/koneksioop.php');
 $db = new database();
 $id_kontrak_file = $_GET['id'];
 $jumlah_file = $db->jumlah_file($id_kontrak_file);
+$jumlah_pic = $db->jumlah_pic($id_kontrak_file);
+$jumlah_status = $db->jumlah_status($id_kontrak_file);
 $tampil_file_upload = $db->tampil_file($id_kontrak_file);
+$tampil_file_pic = $db->tampil_pic($id_kontrak_file);
+$tampil_data_status = $db->tampil_status($id_kontrak_file);
 $id_kontrak = $_GET['id'];
 if (!is_null($id_kontrak)) {
     $data_kontrak = $db->get_by_id($id_kontrak);
@@ -41,13 +45,13 @@ if (isset($_GET['pesan'])) {
         echo "<script>
         swal('Data berhasil diupload', '', 'success');
         </script>";
-    }
-    else if ($_GET['pesan'] == "gagalupload") {
+    } else if ($_GET['pesan'] == "gagalupload") {
         echo "<script>
         swal('Silahkan pilih data yang akan diupload', '', 'error');
         </script>";
     }
 }
+
 ?>
 <div class="dashboard">
     <div class="dahsboard-content">
@@ -59,7 +63,7 @@ if (isset($_GET['pesan'])) {
                 <ul class="navbar-list">
                     <li class="navbar-link"></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
                     <li class="navbar-link activekontrak"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
-                    <li class="navbar-link"><a href=""><i class='bx bx-user-pin'></i> Users</a></li>
+                    <li class="navbar-link"><a href="halamanuser.php"><i class='bx bx-user-pin'></i> Users</a></li>
                 </ul>
             </div>
             <?php include 'components/menu.php' ?>
@@ -88,17 +92,22 @@ if (isset($_GET['pesan'])) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="width: 350px;"><?php echo $data_kontrak['judul_kontrak'] ?></td>
+                                <td style="width: 280px;"><?php echo $data_kontrak['judul_kontrak'] ?></td>
                                 <td><?php echo $data_kontrak['nilai_kontrak'] ?></td>
                                 <td><?php echo $data_kontrak['aging_days'] ?></td>
                                 <td><?php echo $data_kontrak['no_kontrak'] ?></td>
                                 <td><?php echo $data_kontrak['no_wbs'] ?></td>
                                 <td><?php echo $jumlah_file ?> File</td>
-                                <td>20 PIC</td>
-                                <td>10 Status</td>
+                                <td><?php echo $jumlah_pic ?> PIC</td>
+                                <td><?php echo $jumlah_status ?> Status</td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <p class="jangka-waktu"><code>Jangka Waktu Perjanjian : </code><span>Jangka waktu pelaksanaan pekerjaan adalah selama <?php $tgl1 = new DateTime($data_kontrak['tgl_dari']);
+                                                                                                                    $tgl2 = new DateTime($data_kontrak['tgl_sampai']);
+                                                                                                                    $jarak = $tgl2->diff($tgl1);
+                                                                                                                    echo $jarak->m; ?> bulan terhitung mulai tanggal <?php echo date('d F Y', strtotime($data_kontrak['tgl_dari']));  ?> sampai dengan <?php echo date('d F Y', strtotime($data_kontrak['tgl_sampai']));  ?></span></p>
                 </div>
 
                 <div class="table-file">
@@ -114,7 +123,7 @@ if (isset($_GET['pesan'])) {
                     <table id="example" class="cell-border" style="width:100%; margin: 20px 0;">
                         <thead>
                             <tr>
-                                <th>NO</th>
+                                <th style="width: 20px;">NO</th>
                                 <th>Nama File</th>
                                 <th>Tanggal Upload</th>
                                 <th style="text-align: center;"> Actions</th>
@@ -130,7 +139,10 @@ if (isset($_GET['pesan'])) {
                                         <td style="text-align: center;"><?php echo $no++; ?></td>
                                         <td style="width:350px"><?php echo $row_file['nama_file']; ?></td>
                                         <td style="width:350px"><?php echo $row_file['tgl_upload']; ?></td>
-                                        <td style="text-align: center;"><a class="btn-download" href="../controlers/upload/prosesdownload.php?file=<?php echo $row_file['nama_file']; ?>"><i class='bx bx-download'></i></a><a class="btn-hapus" href="../controlers/process.php?action=deletefile&id=<?php echo $row_file['id_file']; ?>&id_kontrak=<?php echo $row_file['id_kontrak']; ?>"><i class='bx bx-trash' ></i></a></td>
+                                        <td style="text-align: center;">
+                                            <a class="btn-download" href="../controlers/upload/prosesdownload.php?file=<?php echo $row_file['nama_file']; ?>"><i class='bx bx-download'></i></a>
+                                            <a class="btn-hapus" href="../controlers/process.php?action=deletefile&id=<?php echo $row_file['id_file']; ?>&id_kontrak=<?php echo $row_file['id_kontrak']; ?>"><i class='bx bx-trash'></i></a>
+                                        </td>
                                     </tr>
                             <?php }
                             } ?>
@@ -138,6 +150,141 @@ if (isset($_GET['pesan'])) {
                     </table>
                 </div>
 
+                <div class="table-pic">
+                    <div class="table-pic-tittle">
+                        <h3>Data PIC</h3>
+                        <div class="btn-upload" onclick="btnOpen()">Tambah PIC</div>
+                    </div>
+                    <table id="example2" class="cell-border" style="width:100%; margin: 20px 0;">
+                        <thead>
+                            <tr>
+                                <th style="width: 20px;">NO</th>
+                                <th>Sub Divisi</th>
+                                <th>Nama PIC</th>
+                                <th style="text-align: center;"> Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $nom = 1;
+                            if (is_array($tampil_file_pic) || is_object($tampil_file_pic)) {
+                                foreach ($tampil_file_pic as $row_file) {
+                            ?>
+                                    <tr>
+                                        <td style="text-align: center;"><?php echo $nom++; ?></td>
+                                        <td style="width:350px; font-size: 18px !important;"><?php echo $row_file['jenis_pic']; ?></td>
+                                        <td style="width:350px; font-size: 18px !important;"><?php echo $row_file['nama_pic']; ?></td>
+                                        <td style="text-align: center;"><a class="btn-download" href="editpic.php?id=<?php echo $row_file['id_pic']; ?>"><i class='bx bx-edit'></i></a>
+                                            <a class="btn-hapus" href="../controlers/process.php?action=deletepic&id=<?php echo $row_file['id_pic']; ?>&id_kontrak=<?php echo $row_file['id_kontrak']; ?>"><i class='bx bx-trash'></i></a>
+                                        </td>
+                                    </tr>
+                            <?php }
+                            } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tambah-pic">
+                    <div class="pic-content">
+                        <div class="btn-cls">
+                            <i class='bx bxs-x-circle text-info' onclick="btnClose()"></i>
+                        </div>
+                        <h1>Data PIC</h1>
+                        <form action="../controlers/process.php?action=addpic" method="post">
+                            <div class="addpic-content">
+                                <label for="">Pilih Jenis PIC :</label>
+                                <select class="form-pic" name="jenis_pic" id="jenis_pic">
+                                    <option value="Pertamina">Pertamina</option>
+                                    <option value="Marketing Elnusa">Marketing Elnusa</option>
+                                    <option value="Operasional Elnusa">Operasional Elnusa</option>
+                                    <option value="AR Elnusa">AR Elnusa</option>
+                                </select>
+                            </div>
+                            <div class="addpic-content">
+                                <label for="">Nama PIC :</label>
+                                <input type="text" name="nama_pic" placeholder="Name PIC1, Name PIC2 ....">
+                            </div>
+                            <input type="hidden" name="id_kontrak" value="<?php echo $data_kontrak['id_kontrak']; ?>" />
+                            <button class='btn-upload' type="submit">Tambah PIC</button>
+                            <button class='btn-reset-pic' type="submit">Reset PIC</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- lates status -->
+                <div class="table-pic">
+                    <div class="table-pic-tittle">
+                        <h3>Data Latest Update</h3>
+                        <a class="btn-upload" href='tambahstatus.php?id=<?php echo $id_kontrak_file ?>'>Tambah Status</a>
+                    </div>
+                    <table id="example3" class="cell-border" style="width:100%; margin: 20px 0;">
+                        <thead>
+                            <tr>
+                                <th style="width: 20px;">NO</th>
+                                <th>Latest Update</th>
+                                <th>Status</th>
+                                <th style="text-align: center;"> Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $nomor = 1;
+                            if (is_array($tampil_data_status) || is_object($tampil_data_status)) {
+                                foreach ($tampil_data_status as $row_file) {
+                            ?>
+                                    <tr>
+                                        <td style="text-align:center;"><?php echo $nomor++; ?></td>
+                                        <td>
+                                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne<?php echo $row_file['id_status'] ?>" aria-expanded="false" aria-controls="flush-collapseOne">
+                                                            <code><?php echo $row_file['tgl_upload'] ?> : </code> <?php echo $row_file['isi_status'] ?></button>
+                                                    </h2>
+                                                    <div id="flush-collapseOne<?php echo $row_file['id_status'] ?>" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                                        <div class="accordion-body">
+                                                            <h5>Latest Update</h5>
+                                                            <div class="update-content">
+                                                                <?php
+                                                                include '../controlers/koneksi.php';
+                                                                $id_status = $row_file['id_status'];
+
+                                                                $data = mysqli_query($koneksi, "select * from log_status where id_status='$id_status' order by id_log DESC ");
+                                                                while ($d = mysqli_fetch_array($data)) {
+                                                                ?>
+                                                                    <p><code><?php echo $d['tgl_log'] ?> :</code> <strong><?php echo $d['isi_status'] ?>. </strong> <code><?php echo $d['type_status'] ?></code></p>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            if ($row_file['type_status'] === 'done') {
+                                                echo "
+                                        <div class='status-done'>
+                                            <p><i class='bx bx-badge-check'></i> Done</p>
+                                        </div>";
+                                            } else {
+                                                echo "<div class='status-progres'>
+                                                        <p><i class='bx bx-loader-circle'></i>On Progres</p>
+                                                         </div>";
+                                            }
+                                            ?>
+
+                                        </td>
+                                        <td style="text-align: center;"><a class="btn-download" href="editstatus.php?id=<?php echo $row_file['id_status']; ?>&id_kontrak=<?php echo $row_file['id_kontrak']; ?>"><i class='bx bx-edit'></i></a>
+                                            <a class="btn-hapus" href="../controlers/process.php?action=deletestatus&id=<?php echo $row_file['id_status']; ?>&id_kontrak=<?php echo $row_file['id_kontrak']; ?>"><i class='bx bx-trash'></i></a>
+                                        </td>
+                                    </tr>
+                            <?php }
+                            } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
