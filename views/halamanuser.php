@@ -26,6 +26,10 @@ if (isset($_GET['pesan'])) {
         echo "<script>
         swal('Data berhasil diedit', '', 'success');
         </script>";
+    }else if ($_GET['pesan'] == "gagal") {
+        echo "<script>
+        swal('Data gagal ditambahkan', 'User sudah ada', 'error');
+        </script>";
     }
 }
 ?>
@@ -50,16 +54,15 @@ if (isset($_GET['pesan'])) {
                 <div class="title-table">
                     <div class="title-tables">
                         <h1>Data Users</h1>
-                        <p>Mari berkordinasi menyelesaikan kontrak yang sudah aging.</p>
                     </div>
                     <a href="tambahuser.php"><i class='bx bx-plus'></i> Tambah Users</a>
                 </div>
                 <div class="user-saat-ini">
-                    <h3>User yang digunakan saat ini adalah <strong><?php echo $_SESSION['username']; ?></strong> dengan level <strong><?php echo $_SESSION['level']; ?></strong></h3>
+                    <h3>User yang digunakan saat ini adalah <strong><?php echo $_SESSION['username']; ?></strong> dengan level <strong><?php echo $_SESSION['level']; ?> Admin</strong></h3>
                     <form action="../controlers/process.php?action=edituser" method="post" class="ubah-ps">
-                        <input type="hidden" value="<?php echo $_SESSION['username']; ?>" >
-                        <input type="hidden" value="<?php echo $_SESSION['level']; ?>" >
-                        <input type="password" required>
+                        <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>" >
+                        <input type="hidden" name="level" value="<?php echo $_SESSION['level']; ?>" >
+                        <input type="password" name="password" required class="input-pasword">
                         <button type="submit" class="btn-upload">Ubah Password</button>
                     </form>
                 </div>
@@ -84,14 +87,16 @@ if (isset($_GET['pesan'])) {
                                     <td><?php echo $row['username']; ?></td>
                                     <td><?php echo $row['password']; ?></td>
                                     <td><?php echo $row['level']; ?></td>
-                                    <td style="text-align: center;"><a href="edituser.php?id=<?php echo $row['id_user']; ?>" class="edit"><i class='bx bx-edit'></i></a>
-                                        <a href="../controlers/process.php?action=deleteuser&id=<?php echo $row['id_user']; ?>" class="hapus"><i class='bx bx-trash'></i></a>
+                                    <td style="text-align: center;"><a href="../controlers/process.php?action=deleteuser&id=<?php echo $row['id_user']; ?>" class="hapus"><i class='bx bx-trash'></i></a>
                                     </td>
                                 </tr>
                         <?php }
                         } ?>
                     </tbody>
                 </table>
+                <div class="padding-new" style="height: 40px;">
+
+                </div>
             </div>
         </div>
     </div>

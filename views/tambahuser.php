@@ -52,7 +52,7 @@ $tampil_kontrak = $db->tampil_data();
                     </div>
                     <div class="input-content">
                         <label for="">Buat Password</label>
-                        <input type="password"  name="nilai_kontrak">
+                        <input type="password"  name="password">
                     </div>
                     <div class="input-content" style="margin-bottom: 40px;">
                         <label for="">level</label>

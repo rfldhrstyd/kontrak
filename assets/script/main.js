@@ -75,6 +75,10 @@ function redirectKontrak() {
   window.location = "kontrakaging.php";
 }
 
+function redirectUser() {
+  window.location = "halamanuser.php";
+}
+
 function btnOpen() {
   const tambahPic = (document.querySelector(".tambah-pic").style.display =
     "grid");
@@ -85,6 +89,6 @@ function btnClose() {
     "none");
 }
 
-function editAction(id) {
-  
-}
+function editAction(id) {}
+
+

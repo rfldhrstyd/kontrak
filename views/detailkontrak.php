@@ -60,11 +60,18 @@ if (isset($_GET['pesan'])) {
                 <img src="../assets/images/elnusa.jpg" alt="">
             </div>
             <div class="dashboard-navbar">
-                <ul class="navbar-list">
-                    <li class="navbar-link"></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
-                    <li class="navbar-link activekontrak"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
-                    <li class="navbar-link"><a href="halamanuser.php"><i class='bx bx-user-pin'></i> Users</a></li>
-                </ul>
+                <?php if ($_SESSION['level'] != "super") { ?>
+                    <ul class="navbar-list">
+                        <li class="navbar-link "></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
+                        <li class="navbar-link activekontrak"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
+                    </ul>
+                <?php } else { ?>
+                    <ul class="navbar-list">
+                        <li class="navbar-link "></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
+                        <li class="navbar-link activekontrak"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
+                        <li class="navbar-link"><a href="halamanuser.php"><i class='bx bx-user-pin'></i> Users</a></li>
+                    </ul>
+                <?php } ?>
             </div>
             <?php include 'components/menu.php' ?>
         </div>
@@ -105,20 +112,26 @@ if (isset($_GET['pesan'])) {
                     </table>
 
                     <p class="jangka-waktu"><code>Jangka Waktu Perjanjian : </code><span>Jangka waktu pelaksanaan pekerjaan adalah selama <?php $tgl1 = new DateTime($data_kontrak['tgl_dari']);
-                                                                                                                    $tgl2 = new DateTime($data_kontrak['tgl_sampai']);
-                                                                                                                    $jarak = $tgl2->diff($tgl1);
-                                                                                                                    echo $jarak->m; ?> bulan terhitung mulai tanggal <?php echo date('d F Y', strtotime($data_kontrak['tgl_dari']));  ?> sampai dengan <?php echo date('d F Y', strtotime($data_kontrak['tgl_sampai']));  ?></span></p>
+                                                                                                                                            $tgl2 = new DateTime($data_kontrak['tgl_sampai']);
+                                                                                                                                            $jarak = $tgl2->diff($tgl1);
+                                                                                                                                            echo $jarak->m; ?> bulan terhitung mulai tanggal <?php echo date('d F Y', strtotime($data_kontrak['tgl_dari']));  ?> sampai dengan <?php echo date('d F Y', strtotime($data_kontrak['tgl_sampai']));  ?></span></p>
                 </div>
 
                 <div class="table-file">
                     <div class="file-title">
                         <h5>File Kontrak</h5>
-                        <form enctype="multipart/form-data" method="POST" action="../controlers/upload/prosesupload.php">
-                            <label for="">File yang di upload :</label>
-                            <input type="file" name="fupload" class="ufile">
-                            <input type="hidden" name="id_kontrak" value="<?php echo $data_kontrak['id_kontrak']; ?>" />
-                            <button type="submit" class="btn-upload">Upload</button>
-                        </form>
+                        <?php if ($_SESSION['level'] != "super" && $_SESSION['level'] != "admin") { ?>
+
+                        <?php } else { ?>
+                            <form enctype="multipart/form-data" method="POST" action="../controlers/upload/prosesupload.php">
+                                <label for="">File yang di upload :</label>
+                                <input type="file" name="fupload" class="ufile">
+                                <input type="hidden" name="id_kontrak" value="<?php echo $data_kontrak['id_kontrak']; ?>" />
+                                <button type="submit" class="btn-upload">Upload</button>
+                            </form>
+                        <?php } ?>
+
+
                     </div>
                     <table id="example" class="cell-border" style="width:100%; margin: 20px 0;">
                         <thead>
@@ -153,7 +166,10 @@ if (isset($_GET['pesan'])) {
                 <div class="table-pic">
                     <div class="table-pic-tittle">
                         <h3>Data PIC</h3>
-                        <div class="btn-upload" onclick="btnOpen()">Tambah PIC</div>
+                        <?php if ($_SESSION['level'] != "super" && $_SESSION['level'] != "admin") { ?>
+                        <?php } else { ?>
+                            <div class="btn-upload" onclick="btnOpen()">Tambah PIC</div>
+                        <?php } ?>
                     </div>
                     <table id="example2" class="cell-border" style="width:100%; margin: 20px 0;">
                         <thead>
@@ -214,7 +230,10 @@ if (isset($_GET['pesan'])) {
                 <div class="table-pic">
                     <div class="table-pic-tittle">
                         <h3>Data Latest Update</h3>
-                        <a class="btn-upload" href='tambahstatus.php?id=<?php echo $id_kontrak_file ?>'>Tambah Status</a>
+                        <?php if ($_SESSION['level'] != "super" && $_SESSION['level'] != "admin") { ?>
+                        <?php } else { ?>
+                            <a class="btn-upload" href='tambahstatus.php?id=<?php echo $id_kontrak_file ?>'>Tambah Status</a>
+                        <?php } ?>
                     </div>
                     <table id="example3" class="cell-border" style="width:100%; margin: 20px 0;">
                         <thead>

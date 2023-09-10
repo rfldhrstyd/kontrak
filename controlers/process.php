@@ -51,7 +51,7 @@ if ($action == "add") {
 	header("location:../views/detailkontrak.php?id=$id_kontrak&pesan=hapus");
 }else if ($action == "adduser") {
 	$koneksi->tambah_data_user($_POST['username'], md5($_POST['password']), $_POST['level']);
-	header("location:../views/halamanuser.php?pesan=berhasil");
+	
 }else if ($action == "deleteuser") {
 	$id_user = $_GET['id'];
 	$koneksi->delete_data_user($id_user);

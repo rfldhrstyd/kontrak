@@ -25,6 +25,7 @@ if (isset($_GET['pesan'])) {
 include('../controlers/koneksioop.php');
 $db = new database();
 $jumlah_barang = $db->jumlah_data();
+$jumlah_data_user = $db->jumlah_data_user();
 $tampil_kontrak = $db->tampil_data();
 ?>
 
@@ -35,11 +36,18 @@ $tampil_kontrak = $db->tampil_data();
                 <img src="../assets/images/elnusa.jpg" alt="">
             </div>
             <div class="dashboard-navbar">
-                <ul class="navbar-list">
-                    <li class="navbar-link active"></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
-                    <li class="navbar-link"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
-                    <li class="navbar-link"><a href="halamanuser.php"><i class='bx bx-user-pin'></i> Users</a></li>
-                </ul>
+                <?php if ($_SESSION['level'] != "super") { ?>
+                    <ul class="navbar-list">
+                        <li class="navbar-link active"></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
+                        <li class="navbar-link"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
+                    </ul>
+                <?php } else { ?>
+                    <ul class="navbar-list">
+                        <li class="navbar-link active"></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
+                        <li class="navbar-link"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
+                        <li class="navbar-link"><a href="halamanuser.php"><i class='bx bx-user-pin'></i> Users</a></li>
+                    </ul>
+                <?php } ?>
             </div>
             <?php include 'components/menu.php' ?>
         </div>
@@ -53,23 +61,43 @@ $tampil_kontrak = $db->tampil_data();
                     <p id="tanggal"></p> <i class='bx bx-calendar'></i>
                 </div>
             </div>
-            <div class="dashboard-jumlah" onclick="redirectKontrak()">
-                <div class="jumlah-aging">
-                    <i class='bx bx-folder'></i>
-                    <div class="aging-title">
-                        <p>Kontrak Aging</p>
-                        <h3><?php echo $jumlah_barang ?> <span>Data</span></h3>
+            <div class="dashboard-jumlah">
+                <?php if ($_SESSION['level'] != "super") { ?>
+                    <div class="jumlah-aging" onclick="redirectKontrak()">
+                        <i class='bx bx-folder'></i>
+                        <div class="aging-title">
+                            <p>Kontrak Aging</p>
+                            <h3><?php echo $jumlah_barang ?> <span>Data</span></h3>
+                        </div>
                     </div>
-                </div>
-                <div class="jumlah-user">
-                    <i class='bx bx-user-pin'></i>
-                    <div class="aging-title">
-                        <p>Data Users</p>
-                        <h3>10 <span>Data</span></h3>
+                <?php } else { ?>
+                    <div class="jumlah-aging" onclick="redirectKontrak()">
+                        <i class='bx bx-folder'></i>
+                        <div class="aging-title">
+                            <p>Kontrak Aging</p>
+                            <h3><?php echo $jumlah_barang ?> <span>Data</span></h3>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <div class="jumlah-user" onclick="redirectUser()">
+                        <i class='bx bx-user-pin'></i>
+                        <div class="aging-title">
+                            <p>Data Users</p>
+                            <h3><?php echo $jumlah_data_user ?> <span>Data</span></h3>
+                        </div>
+                    </div>
+                <?php } ?>
 
+            </div>
+            <div class="" style="width: 650px; height: 600px;">
+                    <canvas id="grafik">
+
+                    </canvas>
+            </div>
+            <!-- <footer>
+                <div class="logo-pertamina">
+                    <img src="../assets/images/logotext.png" alt="">
+                </div>
+            </footer> -->
         </div>
     </div>
 </div>
@@ -78,3 +106,8 @@ $tampil_kontrak = $db->tampil_data();
 <?php
 include 'components/footer.php'
 ?>
+<?php
+include '../assets/script/bar.php'
+?>
+
+

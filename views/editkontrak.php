@@ -29,11 +29,18 @@ if (!is_null($id_kontrak)) {
                 <img src="../assets/images/elnusa.jpg" alt="">
             </div>
             <div class="dashboard-navbar">
-                <ul class="navbar-list">
-                    <li class="navbar-link"></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
-                    <li class="navbar-link activekontrak"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
-                    <li class="navbar-link"><a href="halamanuser.php"><i class='bx bx-user-pin'></i> Users</a></li>
-                </ul>
+                <?php if ($_SESSION['level'] != "super") { ?>
+                    <ul class="navbar-list">
+                        <li class="navbar-link "></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
+                        <li class="navbar-link activekontrak"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
+                    </ul>
+                <?php } else { ?>
+                    <ul class="navbar-list">
+                        <li class="navbar-link "></i><a href="halaman_super.php"><i class='bx bx-home-alt'></i> Dashboard</a></li>
+                        <li class="navbar-link activekontrak"><a href="kontrakaging.php"><i class='bx bx-folder'></i> Kontrak Aging</a></li>
+                        <li class="navbar-link"><a href="halamanuser.php"><i class='bx bx-user-pin'></i> Users</a></li>
+                    </ul>
+                <?php } ?>
             </div>
             <?php include 'components/menu.php' ?>
         </div>

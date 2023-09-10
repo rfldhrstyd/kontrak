@@ -23,6 +23,14 @@ class database
         return $jumlah_barang;
     }
 
+    function jumlah_data_user()
+    {
+        $data = mysqli_query($this->koneksi, "select * from users");
+        $jumlah_data_user = mysqli_num_rows($data);
+
+        return $jumlah_data_user;
+    }
+
     function jumlah_file($id_kontrak_file)
     {
         $data = mysqli_query($this->koneksi, "select * from file where id_kontrak='$id_kontrak_file'");
@@ -48,6 +56,16 @@ class database
     function tampil_data()
     {
         $data = mysqli_query($this->koneksi, "select * from kontrak");
+        while ($row = mysqli_fetch_array($data)) {
+            $hasil[] = $row;
+        }
+        $hasil = !empty($hasil) ? $hasil : '';
+        return $hasil;
+    }
+
+    function tampil_data_chart()
+    {
+        $data = mysqli_query($this->koneksi, "select * from kontrak ORDER BY id_kontrak DESC LIMIT 5");
         while ($row = mysqli_fetch_array($data)) {
             $hasil[] = $row;
         }
@@ -106,7 +124,14 @@ class database
 
     function tambah_data_user($userame, $password, $level)
     {
-        mysqli_query($this->koneksi, "insert into users values ('','$userame','$password','$level')");
+        $login  = mysqli_query($this->koneksi, "select * from users where username='$userame'");
+        $cek = mysqli_num_rows($login);
+        if ($cek > 0) {
+            header("location:../views/halamanuser.php?pesan=gagal");
+        }else{
+            mysqli_query($this->koneksi, "insert into users values ('','$userame','$password','$level')");
+            header("location:../views/halamanuser.php?pesan=berhasil");
+        }
     }
 
     function tambah_data_status($isi_status, $type_status, $tgl_upload, $id_kontrak)

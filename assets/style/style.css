@@ -823,7 +823,7 @@ select,
 
 .user-saat-ini{
   display: flex;
-  margin-top: -20px;
+  margin-top: -10px;
   margin-bottom: 40px;
   align-items: flex-start;
   justify-content: space-between;
@@ -833,7 +833,7 @@ select,
   font-size: 20px;
   line-height: 29px;
   width: 40%;
-  color: #212529;
+  color: #6c757d;
   font-weight: 600;
 }
 
@@ -854,4 +854,27 @@ select,
   border-radius: 8px;
   border: 1px solid #6c757d;
   width: 300px;
+}
+
+.input-pasword{
+  padding: 20px !important;
+  outline-color: #6c757d;
+}
+footer{
+  position: relative;
+  left: 17%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  margin-top: -70px;
+}
+
+.logo-pertamina{
+  width: 150px;
+}
+
+.logo-pertamina img{
+  width: 100%;
 }

@@ -35,7 +35,7 @@ if($cek > 0){
 		$_SESSION['username'] = $username;
 		$_SESSION['level'] = "admin";
 		// alihkan ke halaman dashboard pegawai
-		header("location:admin.php");
+		header("location:../views/halaman_super.php?pesan=berhasil");
  
 	// cek jika user login sebagai pengurus
 	}else if($data['level']=="views"){
@@ -43,7 +43,7 @@ if($cek > 0){
 		$_SESSION['username'] = $username;
 		$_SESSION['level'] = "views";
 		// alihkan ke halaman dashboard pengurus
-		header("location:halaman_views.php");
+		header("location:../views/halaman_super.php?pesan=berhasil");
  
 	}else{
  
